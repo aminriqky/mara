@@ -10,11 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from "react-google-maps";
+import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
 import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
@@ -97,17 +93,6 @@ function PrimarySearchAppBar(props) {
 
   const [daftarBencana, setdaftarBencana] =  useState(null)
 
-  const MapWithAMarker = withGoogleMap(props =>
-    <GoogleMap
-      defaultZoom={15}
-      defaultCenter={{ lat: -2.8988004, lng: 104.3931738 }}
-    >
-      <Marker
-        position={{ lat: -2.8988004, lng: 104.3931738 }}
-      />
-    </GoogleMap>
-  );
-
   useEffect( () => {
     if (daftarBencana === null){
       axios.get(`http://localhost:8000/api/flood`)
@@ -152,10 +137,41 @@ function PrimarySearchAppBar(props) {
     </TableContainer>
     <br/>
     <Typography variant="subtitle2" style={{marginLeft:"13%", color:"#2DA4B9", marginBottom:"5px"}}>&ensp;<b>Maps</b></Typography>
-    <MapWithAMarker
-      containerElement={<div style={{ height: `360px`, width:"650px", marginLeft:"13%"}} />}
-      mapElement={<div style={{ height: `100%` }} />}
-    />
+    <MapContainer style={{marginLeft:"13%",height:"325px", width:"650px"}} center={[-2.8812, 104.3943]} zoom={13} scrollWheelZoom={false}>
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Marker position={[-2.8812, 104.3943]}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+    </MapContainer>
+    <br/>
+    <MapContainer style={{marginLeft:"13%",height:"325px", width:"650px"}} center={[-2.8812, 104.3943]} zoom={13} scrollWheelZoom={false}>
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Marker position={[-2.8812, 104.3943]}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+    </MapContainer>
+    <br/>
+    <MapContainer style={{marginLeft:"13%",height:"325px", width:"650px"}} center={[-2.8812, 104.3943]} zoom={13} scrollWheelZoom={false}>
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Marker position={[-2.8812, 104.3943]}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+    </MapContainer>
     <br/>
   </>
   );

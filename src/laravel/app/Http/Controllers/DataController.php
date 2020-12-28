@@ -25,7 +25,7 @@ class DataController extends Controller
 
     public function getFlame()
     {
-        $flame = Flame::orderBy('suhu', 'asc')->get();
+        $flame = Flame::orderBy('suhu', 'desc')->get();
 
         // bisa juga pakai yg ini
         // return $flame->toJson();
@@ -36,57 +36,57 @@ class DataController extends Controller
     public function getFlameAman()
     {
         $flame = Flame::where('suhu', '>', 0)
-                ->where('suhu', '<', 80)
-                ->orderBy('suhu', 'asc')->get();
+                ->where('suhu', '<', 30)
+                ->orderBy('suhu', 'desc')->get();
 
         return response()->json($flame);
     }
 
     public function getFlamePotensi()
     {
-        $flame = Flame::where('suhu', '>', 80)
-                ->where('suhu', '<', 150)
-                ->orderBy('suhu', 'asc')->get();
+        $flame = Flame::where('suhu', '>', 30)
+                ->where('suhu', '<', 100)
+                ->orderBy('suhu', 'desc')->get();
 
         return response()->json($flame);
     }
 
     public function getFlameBahaya()
     {
-        $flame = Flame::where('suhu', '>', 150)
-                ->orderBy('suhu', 'asc')->get();
+        $flame = Flame::where('suhu', '>', 100)
+                ->orderBy('suhu', 'desc')->get();
 
         return response()->json($flame);
     }
 
     public function getFlood()
     {
-        $flood = Flood::orderBy('ketinggian', 'asc')->get();
+        $flood = Flood::orderBy('ketinggian', 'desc')->get();
 
         return response()->json($flood);
     }
 
     public function getFloodAman()
     {
-        $flood = Flood::where('ketinggian', '<', 30)
+        $flood = Flood::where('ketinggian', '<', 60)
                 ->where('durasi', '<', 60)
-                ->orderBy('ketinggian', 'asc')->get();
+                ->orderBy('ketinggian', 'desc')->get();
 
         return response()->json($flood);
     }
 
     public function getFloodBahaya()
     {
-        $flood = Flood::where('ketinggian', '>', 30)
+        $flood = Flood::where('ketinggian', '>', 60)
                 ->where('durasi', '>', 60)
-                ->orderBy('ketinggian', 'asc')->get();
+                ->orderBy('ketinggian', 'desc')->get();
 
         return response()->json($flood);
     }
 
     public function getGround()
     {
-        $ground = Ground::orderBy('horizontal', 'asc')->get();
+        $ground = Ground::orderBy('horizontal', 'desc')->get();
 
         return response()->json($ground);
     }
@@ -95,7 +95,7 @@ class DataController extends Controller
     {
         $ground = Ground::where('horizontal', '<', 100)
                 ->where('vertikal', '<', 100)
-                ->orderBy('horizontal', 'asc')->get();
+                ->orderBy('horizontal', 'desc')->get();
 
         return response()->json($ground);
     }
@@ -106,7 +106,7 @@ class DataController extends Controller
                 ->where('horizontal', '<', 300)
                 ->orwhere('vertikal', '>', 100)
                 ->where('vertikal', '<', 300)
-                ->orderBy('horizontal', 'asc')->get();
+                ->orderBy('horizontal', 'desc')->get();
 
         return response()->json($ground);
     }
@@ -115,7 +115,7 @@ class DataController extends Controller
     {
         $ground = Ground::where('horizontal', '>', 300)
                 ->orwhere('vertikal', '>', 300)
-                ->orderBy('horizontal', 'asc')->get();
+                ->orderBy('horizontal', 'desc')->get();
 
         return response()->json($ground);
     }

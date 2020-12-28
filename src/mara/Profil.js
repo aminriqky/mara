@@ -277,9 +277,9 @@ function PrimarySearchAppBar(props) {
       </TableBody>
       </Table>
     </TableContainer>
-    <TextField id="filled-basic" label="Nama Lengkap" defaultValue="Muhammad Amin Riqky" variant="filled" style={{marginLeft:"20%", marginTop:"13%"}}/><br/><br/>
-    <TextField id="filled-basic" label="Email" defaultValue="aminriqky@gmail.com" variant="filled" style={{marginLeft:"20%"}}/><br/><br/>
-    <TextField id="filled-basic" label="Password" defaultValue="bengaklolo" variant="filled" type="password" style={{marginLeft:"20%"}}/><br/><br/>
+    <TextField id="filled-basic" label="Nama Lengkap" defaultValue="Muhammad Shidqi" variant="filled" style={{marginLeft:"20%", marginTop:"13%"}}/><br/><br/>
+    <TextField id="filled-basic" label="Email" defaultValue="m.shidqi810@gmail.com" variant="filled" style={{marginLeft:"20%"}}/><br/><br/>
+    <TextField id="filled-basic" label="Password" defaultValue="12345678" variant="filled" type="password" style={{marginLeft:"20%"}}/><br/><br/>
     <Button variant="contained" style={{marginLeft:"21%"}} color="primary">Simpan</Button>&emsp;
     <Button variant="contained" color="secondary">Batal</Button>
   </>

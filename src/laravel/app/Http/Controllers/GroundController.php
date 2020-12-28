@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\Ground;
+use App\User;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotify;
+use App\Mail\MailGround;
 
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -315,6 +320,8 @@ class GroundController extends \TCG\Voyager\Http\Controllers\Controller
     // POST BR(E)AD
     public function update(Request $request, $id)
     {
+        $user = User::all();
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -338,6 +345,14 @@ class GroundController extends \TCG\Voyager\Http\Controllers\Controller
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+
+        if ($request->horizontal > 100 || $request->vertikal > 100) {
+
+            foreach ($user as $key) {
+                Mail::to($key->email)->send(new MailGround($key->name, $request->horizontal,
+                    $request->vertikal, $request->nama_lokasi, $request->deskripsi));
+            }
+        }
 
         event(new BreadDataUpdated($dataType, $data));
 
@@ -413,6 +428,8 @@ class GroundController extends \TCG\Voyager\Http\Controllers\Controller
      
     public function store(Request $request)
     {
+        $user = User::all();
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -425,6 +442,10 @@ class GroundController extends \TCG\Voyager\Http\Controllers\Controller
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
 
         event(new BreadDataAdded($dataType, $data));
+
+        foreach ($user as $key) {
+            Mail::to($key->email)->send(new MailNotify($key->name));
+        }
 
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {

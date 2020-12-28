@@ -104,32 +104,47 @@ function PrimarySearchAppBar(props) {
 
   return (
     <>
-    <img src={require("../img/bakar_logo.png")} alt="" style={{position:"absolute", width:"15%", marginLeft:"40%", marginTop:"2%", zIndex:"-1"}}/>
-    <TableContainer component={Paper} className={classes.table} style={{marginLeft:"25%", marginTop:"20%"}}>
-      <Table className={classes.table}>
-        <TableHead style={{backgroundColor:"#f5f5f5"}}>
-          <TableRow>
-            <TableCell><Typography color="textSecondary"><b>Pagaralam</b></Typography></TableCell>
-            <TableCell/>
-            <TableCell align="center"><Typography color="textSecondary" style={{padding:"10px", backgroundColor:"tomato", borderRadius:"5px"}}><b>Kebakaran</b></Typography></TableCell>
-          </TableRow>
-        </TableHead>
-      <TableBody>
-      <TableRow>
-        <TableCell align="left"><Typography color="textSecondary">
-          <img src={require("../img/beranda2.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
-        </Typography></TableCell>
-        <TableCell align="left"><Typography color="textSecondary">
-          <img src={require("../img/beranda3.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
-        </Typography></TableCell>
-        <TableCell align="left"><Typography color="textSecondary">
-          <img src={require("../img/beranda.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
-        </Typography></TableCell>
-      </TableRow>
-      </TableBody>
-      </Table>
-    </TableContainer>
+    <center>
+    <img src={require("../img/bakar_logo.png")} alt="" style={{position:"relative", width:"15%", marginTop:"2%", zIndex:"-1"}}/>
+    </center>
     <br/>
+    <br/>
+    {
+      daftarBencana !== null && daftarBencana.map((item)=>{
+        let datetime = item.created_at;
+        return(
+        <>
+        <center>
+          <TableContainer component={Paper} className={classes.table} style={{marginLeft:"25%", marginTop:"20%"}}>
+            <Table className={classes.table}>
+              <TableHead style={{backgroundColor:"#f5f5f5"}}>
+                <TableRow>
+                  <TableCell><Typography color="textSecondary"><b>Pagaralam</b></Typography></TableCell>
+                  <TableCell/>
+                  <TableCell align="center"><Typography color="textSecondary" style={{padding:"10px", backgroundColor:"tomato", borderRadius:"5px"}}><b>Kebakaran</b></Typography></TableCell>
+                </TableRow>
+              </TableHead>
+            <TableBody>
+            <TableRow>
+              <TableCell align="left"><Typography color="textSecondary">
+                <img src={require("../img/beranda2.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
+              </Typography></TableCell>
+              <TableCell align="left"><Typography color="textSecondary">
+                <img src={require("../img/beranda3.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
+              </Typography></TableCell>
+              <TableCell align="left"><Typography color="textSecondary">
+                <img src={require("../img/beranda.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
+              </Typography></TableCell>
+            </TableRow>
+            </TableBody>
+            </Table>
+          </TableContainer>
+        </center>
+        <br/>
+        </>
+        )
+      })
+    }
   </>
   );
 }

@@ -22,6 +22,9 @@ Route::group(['middleware' => 'api'], function() {
     // untuk login
     Route::post('user/login', 'LoginController@login');
 
+    // untuk all
+    Route::get('user/all', 'AuthController@all');
+
     // ini untuk store data hasil pendaftaran
     Route::post('user/store', 'AuthController@store');
 

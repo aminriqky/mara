@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '40px 16px',
   },
   table: {
-    maxWidth: 650,
+    maxWidth: 750,
   },
 }));
 
@@ -96,7 +96,8 @@ function PrimarySearchAppBar(props) {
     if (daftarBencana === null){
       axios.get(`http://localhost:8000/api/flood`)
       .then(res => {
-        setdaftarBencana(res.data.map(el=>{ return {id: el.id, nama_lokasi: el.nama_lokasi, deskripsi: el.deskripsi, ketinggian: el.ketinggian, lokasi: el.lokasi}}))
+        const all = res.data;
+        setdaftarBencana(all)
       })
     }
     console.log(daftarBencana);
@@ -104,32 +105,53 @@ function PrimarySearchAppBar(props) {
 
   return (
     <>
-    <img src={require("../img/banjir_logo.png")} alt="" style={{position:"absolute", width:"15%", marginLeft:"40%", marginTop:"2%", zIndex:"-1"}}/>
-    <TableContainer component={Paper} className={classes.table} style={{marginLeft:"25%", marginTop:"20%"}}>
-      <Table className={classes.table}>
-        <TableHead style={{backgroundColor:"#f5f5f5"}}>
-          <TableRow>
-            <TableCell><Typography color="textSecondary"><b>Banyuasin</b></Typography></TableCell>
-            <TableCell/>
-            <TableCell align="center"><Typography color="textSecondary" style={{padding:"10px", backgroundColor:"tomato", borderRadius:"5px"}}><b>Banjir</b></Typography></TableCell>
-          </TableRow>
-        </TableHead>
-      <TableBody>
-      <TableRow>
-        <TableCell align="left"><Typography color="textSecondary">
-          <img src={require("../img/beranda2.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
-        </Typography></TableCell>
-        <TableCell align="left"><Typography color="textSecondary">
-          <img src={require("../img/beranda3.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
-        </Typography></TableCell>
-        <TableCell align="left"><Typography color="textSecondary">
-          <img src={require("../img/beranda.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
-        </Typography></TableCell>
-      </TableRow>
-      </TableBody>
-      </Table>
-    </TableContainer>
+    <center>
+    <img src={require("../img/banjir_logo.png")} alt="" style={{position:"relative", width:"15%", marginTop:"2%", zIndex:"-1"}}/>
+    </center>
     <br/>
+    <br/>
+    {
+      daftarBencana !== null && daftarBencana.map((item)=>{
+        let datetime = item.created_at;
+        let time = datetime.substring(11, 16);
+        return(
+        <>
+        <center>
+          <TableContainer component={Paper} className={classes.table}>
+            <Table className={classes.table}>
+              <TableHead style={{backgroundColor:"#f5f5f5"}}>
+                <TableRow>
+                  <TableCell><Typography color="textSecondary" style={{marginLeft:"25px"}}><b>{item.nama_lokasi}</b></Typography></TableCell>
+                  <TableCell/>
+                  <TableCell align="center"><Typography color="textSecondary" style={{padding:"10px", backgroundColor:"tomato", borderRadius:"5px"}}><b>{item.deskripsi}</b></Typography></TableCell>
+                </TableRow>
+              </TableHead>
+            <TableBody>
+            <TableRow>
+              <TableCell style={{borderBottom: "none"}}><Typography color="textSecondary" align="left" style={{marginLeft:"25px"}}>Lokasi Maps</Typography></TableCell>
+              <TableCell style={{borderBottom: "none"}}/>
+              <TableCell style={{borderBottom: "none"}}><Typography color="textSecondary" align="right">{time} WIB</Typography></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell align="center">
+                <img src={require("../img/beranda2.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
+              </TableCell>
+              <TableCell align="center">
+                <img src={require("../img/beranda3.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
+              </TableCell>
+              <TableCell align="center">
+                <img src={require("../img/beranda.png")} style={{borderRadius:"5px", width:"80%"}} alt=""/>
+              </TableCell>
+            </TableRow>
+            </TableBody>
+            </Table>
+          </TableContainer>
+        </center>
+        <br/>
+        </>
+        )
+      })
+    }
   </>
   );
 }

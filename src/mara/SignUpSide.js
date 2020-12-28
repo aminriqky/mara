@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from "react"
+import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -57,6 +59,61 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const [, setDaftarLogin] =  useState(null)
+  const [input, setInput]  =  useState({name: "",email: "", password: ""})
+  const [, setSelectedId]  =  useState(0)
+  const [statusForm, setStatusForm]  =  useState("create")
+  const history = useHistory();
+
+  const handleChange = (event) =>{
+    let typeOfInput = event.target.name
+
+    switch (typeOfInput){
+      case "name":
+      {
+        setInput({...input, name: event.target.value});
+        break
+      }
+      case "email":
+      {
+        setInput({...input, email: event.target.value});
+        break
+      }
+      case "password":
+      {
+        setInput({...input, password: event.target.value});
+        break
+      }
+    default:
+      {break;}
+    }
+  }
+
+  const handleSubmit = (event) =>{
+    event.preventDefault()
+
+    let name = input.name
+    let email = input.email
+    let password = input.password
+    
+    if (name.replace(/\s/g,'') !== "" && email.replace(/\s/g,'') !== "" && password.replace(/\s/g,'') !== ""){
+      if (statusForm === "create"){        
+        axios.post(`http://localhost:8000/api/user/store`, {name: input.name, email: input.email, password: input.password})
+        .then(res => {
+            setDaftarLogin([
+              { name: input.name,
+                email : input.email,
+                password: input.password
+              }])
+            history.push("/Home");
+            alert("Account Created Successfully")
+        })
+      }
+      setStatusForm("create")
+      setSelectedId(0)
+      setInput({name: "",email:"", password: ""})
+    }
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -70,7 +127,20 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Full Name"
+              name="name"
+              autoComplete="username"
+              value={input.name} 
+              onChange={handleChange}
+              autoFocus
+            />
             <TextField
               variant="outlined"
               margin="normal"
@@ -80,6 +150,8 @@ export default function SignInSide() {
               label="New Email Address"
               name="email"
               autoComplete="email"
+              value={input.email} 
+              onChange={handleChange}
               autoFocus
             />
             <TextField
@@ -92,6 +164,8 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={input.password} 
+              onChange={handleChange}
             />
             <Button
               type="submit"
@@ -99,7 +173,6 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              href="/home"
             >
               Sign Up
             </Button>

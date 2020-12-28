@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Okt 2020 pada 11.55
+-- Waktu pembuatan: 04 Nov 2020 pada 05.12
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.14
 
@@ -73,14 +73,14 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (104, 18, 'id', 'hidden', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (105, 18, 'nama_lokasi', 'text', 'Nama Lokasi', 0, 1, 1, 1, 1, 1, '{}', 2),
 (106, 18, 'deskripsi', 'text_area', 'Deskripsi', 0, 1, 1, 1, 1, 1, '{}', 3),
-(107, 18, 'foto', 'multiple_images', 'Foto', 0, 1, 1, 1, 1, 1, '{}', 4),
+(107, 18, 'foto', 'image', 'Foto', 0, 1, 1, 1, 1, 1, '{}', 4),
 (108, 18, 'suhu', 'number', 'Suhu (Derajat Celcius)', 0, 1, 1, 1, 1, 1, '{}', 5),
 (110, 18, 'created_at', 'timestamp', 'Waktu di buat', 0, 1, 1, 0, 0, 1, '{}', 8),
 (111, 18, 'updated_at', 'timestamp', 'Waktu di update', 0, 0, 0, 0, 0, 0, '{}', 9),
 (112, 19, 'id', 'hidden', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (113, 19, 'nama_lokasi', 'text', 'Nama Lokasi', 0, 1, 1, 1, 1, 1, '{}', 2),
 (114, 19, 'deskripsi', 'text_area', 'Deskripsi', 0, 1, 1, 1, 1, 1, '{}', 3),
-(115, 19, 'foto', 'multiple_images', 'Foto', 0, 1, 1, 1, 1, 1, '{}', 4),
+(115, 19, 'foto', 'image', 'Foto', 0, 1, 1, 1, 1, 1, '{}', 4),
 (116, 19, 'ketinggian', 'number', 'Ketinggian (Cm)', 0, 1, 1, 1, 1, 1, '{}', 5),
 (117, 19, 'durasi', 'number', 'Durasi (Detik)', 0, 1, 1, 1, 1, 1, '{}', 6),
 (119, 19, 'created_at', 'timestamp', 'Waktu di buat', 0, 1, 1, 0, 0, 1, '{}', 9),
@@ -92,7 +92,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (125, 20, 'vertikal', 'number', 'Vertikal (Cm)', 0, 1, 1, 1, 1, 1, '{}', 6),
 (127, 20, 'created_at', 'timestamp', 'Waktu di buat', 0, 1, 1, 0, 0, 1, '{}', 9),
 (128, 20, 'updated_at', 'timestamp', 'Waktu di update', 0, 0, 0, 0, 0, 0, '{}', 10),
-(129, 20, 'foto', 'multiple_images', 'Foto', 0, 1, 1, 1, 1, 1, '{}', 4),
+(129, 20, 'foto', 'image', 'Foto', 0, 1, 1, 1, 1, 1, '{}', 4),
 (130, 18, 'latitude', 'number', 'Latitude', 0, 1, 1, 1, 1, 1, '{}', 6),
 (131, 18, 'longtitude', 'number', 'Longtitude', 0, 1, 1, 1, 1, 1, '{}', 7),
 (132, 19, 'latitude', 'number', 'Latitude', 0, 1, 1, 1, 1, 1, '{}', 7),
@@ -139,9 +139,9 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-07-08 06:28:18', '2020-07-13 23:58:22'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2020-07-08 06:28:18', '2020-07-08 06:28:18'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-07-08 06:28:18', '2020-07-08 06:28:18'),
-(18, 'flames', 'flames', 'Flame', 'Flames', 'voyager-fire', 'App\\Flame', NULL, 'App\\Http\\Controllers\\FlameController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-21 15:30:09', '2020-10-11 09:50:27'),
-(19, 'floods', 'floods', 'Flood', 'Floods', 'voyager-droplet', 'App\\Flood', NULL, 'App\\Http\\Controllers\\FloodController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-21 15:31:40', '2020-10-11 09:51:39'),
-(20, 'grounds', 'grounds', 'Ground', 'Grounds', 'voyager-trees', 'App\\Ground', NULL, 'App\\Http\\Controllers\\GroundController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-21 15:34:47', '2020-10-11 09:52:54'),
+(18, 'flames', 'flames', 'Flame', 'Flames', 'voyager-fire', 'App\\Flame', NULL, 'App\\Http\\Controllers\\FlameController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-21 15:30:09', '2020-11-04 03:32:01'),
+(19, 'floods', 'floods', 'Flood', 'Floods', 'voyager-droplet', 'App\\Flood', NULL, 'App\\Http\\Controllers\\FloodController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-21 15:31:40', '2020-11-04 03:38:01'),
+(20, 'grounds', 'grounds', 'Ground', 'Grounds', 'voyager-trees', 'App\\Ground', NULL, 'App\\Http\\Controllers\\GroundController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-21 15:34:47', '2020-11-04 03:39:09'),
 (22, 'persons', 'persons', 'User', 'Users', 'voyager-people', 'App\\Person', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-10-10 04:33:20', '2020-10-10 04:33:20'),
 (24, 'people', 'people', 'Person', 'People', 'voyager-people', 'App\\People', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-10-11 01:48:35', '2020-10-11 01:48:35');
 
@@ -197,9 +197,9 @@ CREATE TABLE `flames` (
 --
 
 INSERT INTO `flames` (`id`, `nama_lokasi`, `deskripsi`, `foto`, `suhu`, `latitude`, `created_at`, `updated_at`, `longtitude`) VALUES
-(1, 'Prabumulih', 'Lokasi nya di dekat sungai', '[\"flames\\\\October2020\\\\Y6qsGLiCJh5LvWTY1AYv.png\",\"flames\\\\October2020\\\\NmCthoKGyXWG4EwkSBoc.png\"]', 60, 0.2, '2020-10-11 02:17:55', '2020-10-11 02:17:55', 0.3),
-(2, 'Pagaralam1', 'di deket gunung', '[\"flames\\\\October2020\\\\U60WH9AWsjppMQ45MakR.png\",\"flames\\\\October2020\\\\ZGo7jjuJqUONPiOB7dt3.png\"]', 130, 0.3, '2020-10-11 02:21:00', '2020-10-11 09:49:38', 0.4),
-(3, 'Lahat', 'Di padang rumput', '[\"flames\\\\October2020\\\\P07llLW6NrGffTAmmyHv.png\"]', 230, 0.3, '2020-10-11 02:22:17', '2020-10-11 02:22:17', 0.2);
+(2, 'Pagaralam Kota', 'Di dekat jalan menuju gunung dempo', 'flames/November2020/LKU5AagJwQChgIrp1gy6.png', 40, 0.3, '2020-10-11 02:21:00', '2020-11-04 03:35:55', 0.4),
+(3, 'Lahat', 'Di padang rumput', 'flames/November2020/cokzAgbm24w43Ubde7hm.png', 230, 0.3, '2020-10-11 02:22:17', '2020-11-04 03:33:27', 0.2),
+(26, 'Kebun Sawit Prabumulih', 'Kebun sawit di dekat persimpangan jalan menuju kota.', 'flames/November2020/lgTR9Wa81BUPPR2bV5E8.png', 40, 1, '2020-11-02 12:35:31', '2020-11-04 04:03:10', -1);
 
 -- --------------------------------------------------------
 
@@ -225,9 +225,10 @@ CREATE TABLE `floods` (
 --
 
 INSERT INTO `floods` (`id`, `nama_lokasi`, `deskripsi`, `foto`, `ketinggian`, `durasi`, `latitude`, `created_at`, `updated_at`, `longtitude`) VALUES
-(1, 'Prabumulih1', 'dasdad', '[\"floods\\\\October2020\\\\cWZkMM0gyQic6C9Kodpv.png\"]', 130, 90, 0.4, '2020-10-11 02:23:23', '2020-10-11 09:51:58', 0.5),
-(2, 'Pagaralam', 'adadsdd', '[\"floods\\\\October2020\\\\XiGmcYdf33pXwockel6D.png\"]', 20, 20, 0.9, '2020-10-11 02:23:43', '2020-10-11 02:23:43', 0.8),
-(3, 'Lahat', 'addwad', '[\"floods\\\\October2020\\\\NTcOmcmqwKqonEYyPzsj.png\"]', 230, 420, 0.5, '2020-10-11 02:24:09', '2020-10-11 02:24:09', 0.6);
+(1, 'Prabumulih', 'Di dekat pasar di tengah kota', NULL, 130, 90, 0.4, '2020-10-11 02:23:23', '2020-11-04 02:49:01', 0.5),
+(2, 'Pagaralam', 'Di jalan setapak menuju pegunungan', NULL, 20, 20, 0.9, '2020-10-11 02:23:43', '2020-11-04 02:48:42', 0.8),
+(3, 'Lahat', 'Di dekat perkebunan di pinggir jalan utama', NULL, 30, 420, 0.5, '2020-10-11 02:24:09', '2020-11-04 02:48:03', 0.6),
+(4, 'Stasiun Kereta Kertapati', 'Stasiun kertapati di dekat jembatan di pinggir sungai', 'floods/November2020/5BuAcgGhA1yve31fNWLm.png', 150, 280, 1, '2020-11-02 15:57:14', '2020-11-04 04:07:25', 0);
 
 -- --------------------------------------------------------
 
@@ -253,9 +254,10 @@ CREATE TABLE `grounds` (
 --
 
 INSERT INTO `grounds` (`id`, `nama_lokasi`, `deskripsi`, `horizontal`, `vertikal`, `created_at`, `updated_at`, `foto`, `latitude`, `longtitude`) VALUES
-(1, 'Prabumulih', 'sdfs', 70, 60, '2020-10-11 03:02:04', '2020-10-11 03:02:04', '[\"grounds\\\\October2020\\\\1V6Fd6bhoT0bRE8iSRj8.png\",\"grounds\\\\October2020\\\\bCtpBb3nGoSTKf3y9C8s.png\"]', 0.4, 0.5),
-(2, 'Pagaralam', 'asdsad', 130, 110, '2020-10-11 03:02:29', '2020-10-11 03:02:29', '[\"grounds\\\\October2020\\\\aVbR9fw5QOP9CHe9WBQQ.png\"]', 0.4, 0.5),
-(3, 'Lahat', 'asdasd', 400, 360, '2020-10-11 03:02:49', '2020-10-11 03:02:49', '[\"grounds\\\\October2020\\\\y0AvUaMEzd9RZkYoetgI.png\"]', 0.9, 0.1);
+(1, 'Prabumulih', 'Di jalan setapak dekat perkebunan', 70, 60, '2020-10-11 03:02:04', '2020-11-04 03:29:12', NULL, 0.4, 0.5),
+(2, 'Pagaralam', 'Di persimpangan 3 dekat pasar', 400, 340, '2020-10-11 03:02:29', '2020-11-04 02:55:26', NULL, 0.4, 0.5),
+(3, 'Lahat', 'Di dekat jalan keluar kota lahat', 99, 200, '2020-10-11 03:02:49', '2020-11-04 02:54:04', NULL, 0.9, 0.1),
+(5, 'Lematang', 'Di dekat tugu selamat datang', 400, 430, '2020-11-02 16:21:26', '2020-11-04 04:10:05', NULL, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -410,7 +412,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `people` (
   `id` int(10) UNSIGNED NOT NULL,
-  `nama` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `profile` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -422,8 +424,8 @@ CREATE TABLE `people` (
 -- Dumping data untuk tabel `people`
 --
 
-INSERT INTO `people` (`id`, `nama`, `email`, `password`, `profile`, `created_at`, `updated_at`) VALUES
-(1, 'Muhammad Shidqi', 'shidqi@gmail.com', '12345678', 'default.jpg', NULL, NULL);
+INSERT INTO `people` (`id`, `name`, `email`, `password`, `profile`, `created_at`, `updated_at`) VALUES
+(1, 'Muhammad Shidqi', 'm.shidqi810@gmail.com', '12345678', 'default.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -513,16 +515,9 @@ CREATE TABLE `permission_role` (
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (1, 1),
-(2, 1),
-(3, 1),
+(1, 10),
 (4, 1),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1),
 (11, 1),
-(12, 1),
 (13, 1),
 (14, 1),
 (15, 1),
@@ -532,27 +527,25 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (19, 1),
 (20, 1),
 (82, 1),
-(83, 1),
+(82, 10),
 (84, 1),
 (85, 1),
 (86, 1),
 (87, 1),
-(88, 1),
+(87, 10),
 (89, 1),
 (90, 1),
 (91, 1),
 (92, 1),
-(93, 1),
+(92, 10),
 (94, 1),
 (95, 1),
 (96, 1),
 (102, 1),
-(103, 1),
 (104, 1),
 (105, 1),
 (106, 1),
 (112, 1),
-(113, 1),
 (114, 1),
 (115, 1),
 (116, 1);
@@ -576,7 +569,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', '2020-07-08 06:28:18', '2020-07-08 06:28:18');
+(1, 'admin', 'Administrator', '2020-07-08 06:28:18', '2020-07-08 06:28:18'),
+(10, 'kades', 'Kepala Desa', '2020-11-04 01:37:23', '2020-11-04 01:37:45');
 
 -- --------------------------------------------------------
 
@@ -692,8 +686,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `active_status`, `dark_mode`, `messenger_color`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Muhammad Shidqi', 'admin@admin.com', 1, 0, '#2180f3', 'users/July2020/xYM9YnxVccdx3QfTSKdB.jpg', NULL, '$2y$10$rzpxhCeqkhGkGFCFPZuiTeWD.8KdQbFazi8D0kUmNdnVsc1QdMzCi', 'ytb6ZHKmQ5d3YFIB7KJvxLB2Uyi8yOViKM1X6tHFDwlaPVfYJ1X7UhtjnOwz', '{\"locale\":\"id\"}', '2020-07-08 06:28:20', '2020-07-30 06:56:41'),
-(15, 1, 'Alwi 110', 'm.shidqi810@gmail.com', 0, 0, '#2180f3', 'users/October2020/x5cBhshfxsWsTwrmgnBt.jpg', NULL, '$2y$10$LQ5kWo8nnwp/2dUdAUkq5uWBnGg7rA5P/IqJXi4uWCGtc5KmjFHqW', '4QlA4JRmy3zzpVwobEmeLvmPs2XnqaTOKsx0p3kfHF5bEfGi1trDuAjtvqky', '{\"locale\":\"id\"}', '2020-07-28 13:18:50', '2020-10-11 03:44:31');
+(15, 1, 'Alwi 110', 'm.shidqi810@gmail.com', 0, 0, '#2180f3', 'users/October2020/x5cBhshfxsWsTwrmgnBt.jpg', NULL, '$2y$10$LQ5kWo8nnwp/2dUdAUkq5uWBnGg7rA5P/IqJXi4uWCGtc5KmjFHqW', 'h0jp2WTD8zcfDO061LLhg8AI8RcGUOSBUUB2akuHQFC06Bl3jfatZE6bFYKR', '{\"locale\":\"id\"}', '2020-07-28 13:18:50', '2020-10-11 03:44:31'),
+(20, 1, 'Coba', 'shidqidedek@gmail.com', 0, 0, '#2180f3', 'users/default.jpg', NULL, '$2y$10$Gu6fZakVV2rtq8oFT8f/IOILLxn472Fgart12xOHfcC/HlX1kbFO6', NULL, '{\"locale\":\"id\"}', '2020-11-01 16:12:25', '2020-11-01 16:12:25'),
+(21, 10, 'Muhammad Ridho', 'mridhoasli@gmail.com', 0, 0, '#2180f3', 'users/default.jpg', NULL, '$2y$10$/GPQ2xstwBZlqPToJ1EK0eCD3lIx5jt4R2zhUw0aDS8jEUKwBxb72', NULL, '{\"locale\":\"id\"}', '2020-11-04 01:38:27', '2020-11-04 01:39:21');
 
 -- --------------------------------------------------------
 
@@ -874,19 +869,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `flames`
 --
 ALTER TABLE `flames`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `floods`
 --
 ALTER TABLE `floods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `grounds`
 --
 ALTER TABLE `grounds`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `menus`
@@ -922,7 +917,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `settings`
@@ -940,7 +935,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

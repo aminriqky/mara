@@ -17,9 +17,13 @@ Route::get('/', function () {
     return view('voyager::login');
 })->name('awal');
 
-Route::get('/home', function () {
-	return view('home');
-})->name('home');
+Route::get('/admin/flames/siaga', 'Controller@siagaFlame')->name('siaga.flame');
+Route::get('/admin/flames/bahaya', 'Controller@bahayaFlame')->name('bahaya.flame');
+
+Route::get('/admin/floods/bahaya', 'Controller@bahayaFlood')->name('bahaya.flood');
+
+Route::get('/admin/grounds/siaga', 'Controller@siagaGround')->name('siaga.ground');
+Route::get('/admin/grounds/bahaya', 'Controller@bahayaGround')->name('bahaya.ground');
 
 // ubah di prefix dan di voyager config utk costum url admin nya
 Route::group(['prefix' => 'admin'], function () {

@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Flame;
+use App\User;
+use App\People;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotify;
+use App\Mail\MailFlame;
 
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -315,6 +321,8 @@ class FlameController extends \TCG\Voyager\Http\Controllers\Controller
     // POST BR(E)AD
     public function update(Request $request, $id)
     {
+        $people = People::all();
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -338,6 +346,13 @@ class FlameController extends \TCG\Voyager\Http\Controllers\Controller
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+
+        if ($request->suhu > 35) {
+            foreach ($people as $key) {
+                Mail::to($key->email)->send(new MailFlame($key->name, $request->suhu,
+                    $request->nama_lokasi, $request->deskripsi));
+            }
+        }
 
         event(new BreadDataUpdated($dataType, $data));
 
@@ -413,6 +428,8 @@ class FlameController extends \TCG\Voyager\Http\Controllers\Controller
      
     public function store(Request $request)
     {
+        $people = People::all();
+        
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -425,6 +442,10 @@ class FlameController extends \TCG\Voyager\Http\Controllers\Controller
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
 
         event(new BreadDataAdded($dataType, $data));
+
+        foreach ($people as $key) {
+            Mail::to($key->email)->send(new MailNotify($key->name));
+        }
 
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {
@@ -440,6 +461,7 @@ class FlameController extends \TCG\Voyager\Http\Controllers\Controller
         } else {
             return response()->json(['success' => true, 'data' => $data]);
         }
+
     }
 
     //***************************************

@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react"
+import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
+import { useFormFields } from "./hooksLib";
 
 function Copyright() {
   return (
@@ -57,6 +60,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const [input, setInput] = useFormFields({
+    username: "",
+    password: ""
+  });
+  const history = useHistory();
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    
+    let res = await axios.get(`http://localhost:8000/api/user/all`, {email: input.email, password: input.password})
+    let data = res.data;
+    {
+      data !== null && data.map((metadata)=>{
+    if (metadata.email != null && metadata.password != null && metadata.email===input.email && metadata.password===input.password) {
+      history.push("/Home");
+    } else {
+      console.log(res);
+    }
+    })
+  }
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -70,7 +94,7 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -81,6 +105,8 @@ export default function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={input.email}
+              onChange={setInput}
             />
             <TextField
               variant="outlined"
@@ -92,6 +118,8 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={input.password}
+              onChange={setInput}
             />
             <Button
               type="submit"
@@ -99,7 +127,6 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              href="/home"
             >
               Sign In
             </Button>
